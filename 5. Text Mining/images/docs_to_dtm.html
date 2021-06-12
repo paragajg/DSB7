@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="http://www.speedlab.io/xmlrpc.php">
+		
+	
+	
+	<meta name="google-site-verification" content="JN-vQXGCuW0ESJfssInQqol1U18cm83BsFPxroaCNsM" /> <!-- For http://speedlab.io -->
+	
+	
+	<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>Creation of semantic variables based on the document-term matrix (DTM) - SPE3DLab, Speed-up your data analysis, Big Data</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v3.9 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Creation of semantic variables based on the document-term matrix (DTM) - SPE3DLab, Speed-up your data analysis, Big Data" />
+<meta property="og:url" content="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/" />
+<meta property="og:site_name" content="SPE3DLab, Speed-up your data analysis, Big Data" />
+<meta property="article:section" content="Creation of additional variable" />
+<meta property="article:published_time" content="2017-03-08T09:11:24+00:00" />
+<meta property="article:modified_time" content="2017-04-14T06:12:42+00:00" />
+<meta property="og:updated_time" content="2017-04-14T06:12:42+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Creation of semantic variables based on the document-term matrix (DTM) - SPE3DLab, Speed-up your data analysis, Big Data" />
+<meta name="twitter:image" content="http://www.speedlab.io/wp-content/uploads/2017/03/new_features-4.png" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//www.speedlab.io'>
+<link rel='dns-prefetch' href='//maps.google.com'>
+<link rel='dns-prefetch' href='//fonts.googleapis.com'>
+<link rel='dns-prefetch' href='//s.w.org'>
+<link rel="alternate" type="application/rss+xml" title="SPE3DLab, Speed-up your data analysis, Big Data &raquo; Feed" href="http://www.speedlab.io/en/feed/" />
+<link rel="alternate" type="application/rss+xml" title="SPE3DLab, Speed-up your data analysis, Big Data &raquo; Comments Feed" href="http://www.speedlab.io/en/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="SPE3DLab, Speed-up your data analysis, Big Data &raquo; Creation of semantic variables based on the document-term matrix (DTM) Comments Feed" href="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.speedlab.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='scap.flashblock-css'  href='http://www.speedlab.io/wp-content/plugins/compact-wp-audio-player/css/flashblock.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='scap.player-css'  href='http://www.speedlab.io/wp-content/plugins/compact-wp-audio-player/css/player.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-css'  href='http://www.speedlab.io/wp-content/plugins/contact-form-maker/css/jquery-ui-1.10.3.custom.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-spinner-css'  href='http://www.speedlab.io/wp-content/plugins/contact-form-maker/css/jquery-ui-spinner.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='form_maker_calendar-jos-css'  href='http://www.speedlab.io/wp-content/plugins/contact-form-maker/css/calendar-jos.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='form_maker_frontend-css'  href='http://www.speedlab.io/wp-content/plugins/contact-form-maker/css/form_maker_frontend.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='image-hover-css-css'  href='http://www.speedlab.io/wp-content/plugins/image-hover-effects-visual-composer-extension/css/image-hover.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-accordion-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/accordion/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-slick-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/css/slick.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-carousel-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/carousel/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-clients-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/clients/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-heading-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/heading/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-odometers-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/odometers/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-piecharts-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/piecharts/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-portfolio-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/portfolio/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-posts-carousel-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/posts-carousel/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-pricing-table-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/pricing-table/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-services-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/services/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-stats-bar-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/stats-bar/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-tabs-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/tabs/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-team-members-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/team/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-testimonials-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/testimonials/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-flexslider-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/css/flexslider.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-testimonials-slider-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/testimonials-slider/css/style.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='parent-style-css'  href='http://www.speedlab.io/wp-content/themes/twentysixteen/style.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='child-style-css'  href='http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/style.css?ver=4.6' type='text/css' media='all' />
+<link rel='stylesheet' id='twentysixteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Merriweather%3A400%2C700%2C900%2C400italic%2C700italic%2C900italic%7CMontserrat%3A400%2C700%7CInconsolata%3A400&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='http://www.speedlab.io/wp-content/themes/twentysixteen/genericons/genericons.css?ver=3.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='twentysixteen-style-css'  href='http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/style.css?ver=4.6' type='text/css' media='all' />
+<!--[if lt IE 10]>
+<link rel='stylesheet' id='twentysixteen-ie-css'  href='http://www.speedlab.io/wp-content/themes/twentysixteen/css/ie.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentysixteen-ie8-css'  href='http://www.speedlab.io/wp-content/themes/twentysixteen/css/ie8.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='twentysixteen-ie7-css'  href='http://www.speedlab.io/wp-content/themes/twentysixteen/css/ie7.css?ver=20160816' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='recent-posts-widget-with-thumbnails-public-style-css'  href='http://www.speedlab.io/wp-content/plugins/recent-posts-widget-with-thumbnails/public.css?ver=4.13.1' type='text/css' media='all' />
+<link rel='stylesheet' id='js_composer_front-css'  href='http://www.speedlab.io/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=4.12' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-frontend-styles-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/css/lvca-frontend.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='lvca-icomoon-styles-css'  href='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/css/icomoon.css?ver=1.0' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/compact-wp-audio-player/js/soundmanager2-nodebug-jsmin.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://maps.google.com/maps/api/js?v=3.exp&#038;key&#038;ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/if_gmap_front_end.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/jelly.min.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/file-upload.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/calendar/calendar.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/calendar/calendar_function.js?ver=4.6'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var fm_objectL10n = {"plugin_url":"http:\/\/www.speedlab.io\/wp-content\/plugins\/contact-form-maker"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/contact-form-maker/js/main_div_front_end.js?ver=cfm-1.8.35'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var cssTarget = "img.";
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/svg-support/js/min/svg-inline-min.js?ver=1.0.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/accordion/js/accordion.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/slick.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/spacer/js/spacer.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/jquery.waypoints.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/jquery.stats.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/odometers/js/odometer.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/piecharts/js/piechart.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/isotope.pkgd.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/imagesloaded.pkgd.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/portfolio/js/portfolio.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/posts-carousel/js/posts-carousel.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/stats-bar/js/stats-bar.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/tabs/js/tabs.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/jquery.flexslider.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/includes/addons/testimonials-slider/js/testimonials.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/js/script.js?ver=4.6'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/themes/twentysixteen/js/html5.js?ver=3.7.3'></script>
+<![endif]-->
+<link rel='https://api.w.org/' href='http://www.speedlab.io/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.speedlab.io/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.speedlab.io/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.6" />
+<link rel='shortlink' href='http://www.speedlab.io/?p=511' />
+<link rel="alternate" type="application/json+oembed" href="http://www.speedlab.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.speedlab.io%2Fen%2F2017%2F03%2F08%2Fcreation-semantic-variables-based-document-term-matrix-dtm%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://www.speedlab.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.speedlab.io%2Fen%2F2017%2F03%2F08%2Fcreation-semantic-variables-based-document-term-matrix-dtm%2F&#038;format=xml" />
+<link rel="alternate" href="http://www.speedlab.io/fr/2017/03/08/creation-de-variables-semantiques-sur-la-base-de-la-matrice-documents-termes-dtm-en-anglais/" hreflang="fr" />
+<link rel="alternate" href="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/" hreflang="en" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress."/>
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="http://www.speedlab.io/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><!--[if IE  8]><link rel="stylesheet" type="text/css" href="http://www.speedlab.io/wp-content/plugins/js_composer/assets/css/vc-ie8.min.css" media="screen"><![endif]-->	<style type="text/css" id="twentysixteen-header-css">
+		.site-branding {
+			margin: 0 auto 0 0;
+		}
+
+		.site-branding .site-title,
+		.site-description {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute;
+		}
+	</style>
+	<link rel="icon" href="http://www.speedlab.io/wp-content/uploads/2016/09/cropped-speedlab_logo_cursor_512x512-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="http://www.speedlab.io/wp-content/uploads/2016/09/cropped-speedlab_logo_cursor_512x512-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="http://www.speedlab.io/wp-content/uploads/2016/09/cropped-speedlab_logo_cursor_512x512-1-180x180.png" />
+<meta name="msapplication-TileImage" content="http://www.speedlab.io/wp-content/uploads/2016/09/cropped-speedlab_logo_cursor_512x512-1-270x270.png" />
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>	
+	<link rel="stylesheet" type="text/css" media="all" href="http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/css/animate.min.css" />
+	
+	<script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-39294492-4', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        
+        <script type="text/javascript" src="http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/js/script.js?v=1553410977"></script>	
+        
+        
+        <link rel="stylesheet" href="http://www.speedlab.io/wp-content/themes/from_twentysixteen_no_sidebar/style.css?1493355856" type="text/css" />
+        
+</head>
+
+<body class="single single-post postid-511 single-format-standard wp-custom-logo wpb-js-composer js-comp-ver-4.12 vc_responsive">
+<div id="page" class="site">
+	<div class="site-inner">
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<ul id="language-switcher">	<li class="lang-item lang-item-2 lang-item-fr lang-item-first"><a lang="fr-FR" hreflang="fr-FR" href="http://www.speedlab.io/fr/2017/03/08/creation-de-variables-semantiques-sur-la-base-de-la-matrice-documents-termes-dtm-en-anglais/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGzSURBVHjaYiyeepkBBv79+Zfnx/f379+fP38CyT9//jAyMiq5GP77wvDnJ8MfoAIGBoAAYgGqC7STApL///3/9++/pCTv////Qdz/QO4/IMna0vf/z+9/v379//37bUUTQACBNDD8Z/j87fffvyAVX79+/Q8GQDbQeKA9fM+e/Pv18/+vnwzCIkBLAAKQOAY5AIAwCEv4/4PddNUm3ji0QJyxW3rgzE0iLfqDGr2oYuu0l54AYvnz5x9Q6d+/QPQfyAQqAin9B3EOyG1A1UDj//36zfjr1y8GBoAAFI9BDgAwCMIw+P8Ho3GDO6XQ0l4MN8b2kUwYaLszqgKM/KHcDXwBxAJUD3TJ779A8h9Q5D8SAHoARP36+Rfo41+/mcA2AAQQy49ff0Cu//MPpAeI/0FdA1QNYYNVA/3wmwEYVgwMAAHE8uPHH5BqoD1//gJJLADoJKDS378Z//wFhhJAALF8A3rizz8uTmYg788fJkj4QOKREQyYxSWBhjEC/fcXZANAALF8+/anbcHlHz9+ffvx58uPX9KckkCn/gby/wLd8uvHjx96k+cD1UGiGQgAAgwA7q17ZpsMdUQAAAAASUVORK5CYII=" title="Français" alt="Français" /><span style="margin-left:0.3em;">fr</span></a></li>
+	<li class="lang-item lang-item-5 lang-item-en current-lang"><a lang="en-US" hreflang="en-US" href="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHzSURBVHjaYkxOP8IAB//+Mfz7w8Dwi4HhP5CcJb/n/7evb16/APL/gRFQDiAAw3JuAgAIBEDQ/iswEERjGzBQLEru97ll0g0+3HvqMn1SpqlqGsZMsZsIe0SICA5gt5a/AGIEarCPtFh+6N/ffwxA9OvP/7//QYwff/6fZahmePeB4dNHhi+fGb59Y4zyvHHmCEAAAW3YDzQYaJJ93a+vX79aVf58//69fvEPlpIfnz59+vDhw7t37968efP3b/SXL59OnjwIEEAsDP+YgY53b2b89++/awvLn98MDi2cVxl+/vl6mituCtBghi9f/v/48e/XL86krj9XzwEEEENy8g6gu22rfn78+NGs5Ofr16+ZC58+fvyYwX8rxOxXr169fPny+fPn1//93bJlBUAAsQADZMEBxj9/GBxb2P/9+S/R8u3vzxuyaX8ZHv3j8/YGms3w8ycQARmi2eE37t4ACCDGR4/uSkrKAS35B3TT////wADOgLOBIaXIyjBlwxKAAGKRXjCB0SOEaeu+/y9fMnz4AHQxCP348R/o+l+//sMZQBNLEvif3AcIIMZbty7Ly6t9ZmXl+fXj/38GoHH/UcGfP79//BBiYHjy9+8/oUkNAAHEwt1V/vI/KBY/QSISFqM/GBg+MzB8A6PfYC5EFiDAABqgW776MP0rAAAAAElFTkSuQmCC" title="English" alt="English" /><span style="margin-left:0.3em;">en</span></a></li>
+</ul> 
+		
+		<header id="masthead" class="site-header" role="banner">
+			
+			<div class="site-header-main">
+			
+			
+				<div class="site-branding">
+					<a href="http://www.speedlab.io/en/speedlab-en/" class="custom-logo-link" rel="home" itemprop="url"><img width="240" height="114" src="http://www.speedlab.io/wp-content/uploads/2017/02/cropped-SPE3DLab_logo_512x245_woBG.png" class="custom-logo" alt="cropped-SPE3DLab_logo_512x245_woBG.png" itemprop="logo" /></a>
+											<p class="site-title"><a href="http://www.speedlab.io/en/speedlab-en/" rel="home">SPE3DLab, Speed-up your data analysis, Big Data</a></p>
+											<p class="site-description">Explore, prototype, integrate</p>
+									</div><!-- .site-branding -->
+
+									<button id="menu-toggle" class="menu-toggle">Menu</button>
+
+					<div id="site-header-menu" class="site-header-menu">
+													<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Menu">
+								<div class="menu-main-en-container"><ul id="menu-main-en" class="primary-menu"><li id="menu-item-440" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-440"><a href="http://www.speedlab.io/en/category/features-and-roadmap/">Features and roadmap</a></li>
+<li id="menu-item-87" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-87"><a href="http://www.speedlab.io/en/download/">Download</a></li>
+<li id="menu-item-57" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57"><a href="http://www.speedlab.io/en/projects-and-use-cases/">Projects and use cases</a></li>
+<li id="menu-item-65" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-65"><a href="http://www.speedlab.io/en/publications-en/">Publications</a></li>
+<li id="menu-item-410" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-410"><a href="http://www.speedlab.io/en/category/events/">Events</a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="http://www.speedlab.io/en/partners/">Partners</a></li>
+<li id="menu-item-388" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-388"><a href="http://www.speedlab.io/en/category/in-the-press/">Press</a></li>
+<li id="menu-item-92" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92"><a href="http://www.speedlab.io/en/contact-en/">Contact</a></li>
+</ul></div>							</nav><!-- .main-navigation -->
+						
+											</div><!-- .site-header-menu -->
+							</div><!-- .site-header-main -->
+
+						
+			
+			
+		</header><!-- .site-header -->
+
+		<div id="content" class="site-content">
+
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+		
+<article id="post-511" class="post-511 post type-post status-publish format-standard has-post-thumbnail hentry category-creation-of-additional-variable category-features-and-roadmap category-new-feature category-semantic">
+	<header class="entry-header">
+		<h1 class="entry-title">Creation of semantic variables based on the document-term matrix (DTM)</h1>	</header><!-- .entry-header -->
+
+	
+	
+	<div class="entry-content">
+	
+	
+		<div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<p>SPE3DLab allows you to add the variables derived from the DTM analysis of the selected variables.<br />
+<span id="more-511"></span><br />
+The DTM analysis can either choose the concatenation of the selected variables or on each of the variables.<br />
+The following pretreatments are automatically applied: deletion of stop words, wordstemming. These pre-treatments relate to the language specified by the user.</p>
+
+		</div>
+	</div>
+</div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_single_image wpb_content_element vc_align_center">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="712" height="435" src="http://www.speedlab.io/wp-content/uploads/2017/03/DTM.png" class="vc_single_image-img attachment-large" alt="DTM" srcset="http://www.speedlab.io/wp-content/uploads/2017/03/DTM.png 712w, http://www.speedlab.io/wp-content/uploads/2017/03/DTM-300x183.png 300w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 61vw, (max-width: 1362px) 45vw, 600px" /></div>
+		</figure>
+	</div>
+</div></div></div></div>
+	</div><!-- .entry-content -->
+
+</article><!-- #post-## -->
+
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="http://www.speedlab.io/en/2017/02/13/search-best-system-differential-equations/" rel="prev"><span class="meta-nav" aria-hidden="true">Previous</span> <span class="screen-reader-text">Previous post:</span> <span class="post-title">Search for the best system of differential equations</span></a></div><div class="nav-next"><a href="http://www.speedlab.io/en/2017/03/12/vertically-aggregated-datasource/" rel="next"><span class="meta-nav" aria-hidden="true">Next</span> <span class="screen-reader-text">Next post:</span> <span class="post-title">&#8216;Vertically aggregated&#8217; datasource</span></a></div></div>
+	</nav>
+	</main><!-- .site-main -->
+
+	
+</div><!-- .content-area -->
+
+
+	<aside id="secondary" class="sidebar widget-area" role="complementary">
+		<div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget">
+	<section id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">	<h2 class="widget-title">News</h2>	<ul>
+			<li><a href="http://www.speedlab.io/en/2018/05/18/spe3dlab-bfmtv-may-18th-2018/"><img width="75" height="75" src="http://www.speedlab.io/wp-content/uploads/2018/05/bfmbusiness-150x150.png" class="attachment-75x75 size-75x75 wp-post-image" alt="bfmbusiness" srcset="http://www.speedlab.io/wp-content/uploads/2018/05/bfmbusiness-150x150.png 150w, http://www.speedlab.io/wp-content/uploads/2018/05/bfmbusiness.png 200w" sizes="(max-width: 75px) 85vw, 75px" /><span class="rpwwt-post-title">SPE3DLab on BFMTV &#8211; May 18th 2018</span></a><div class="rpwwt-post-date">May 18, 2018</div></li>
+			<li><a href="http://www.speedlab.io/en/2018/01/04/spe3dlab-international-conference-statistics-health-toulouse-12th-jan/"><img width="75" height="75" src="http://www.speedlab.io/wp-content/uploads/2018/01/logo_1_cimi-2-150x150.png" class="attachment-75x75 size-75x75 wp-post-image" alt="logo_1_cimi" /><span class="rpwwt-post-title">SPE3DLAB at the international conference &#8220;statistics and health&#8221;, Toulouse 12th Jan.</span></a><div class="rpwwt-post-date">January 4, 2018</div></li>
+			<li><a href="http://www.speedlab.io/en/2017/11/11/spe3dlab-meeting-french-society-forensic-medecine-tours-13th-nov-2017/"><img width="75" height="75" src="http://www.speedlab.io/wp-content/uploads/2017/06/666_ckeditor_perso_36611_56caed4bbe335_1-150x150.png" class="attachment-75x75 size-75x75 wp-post-image" alt="666_ckeditor_perso_36611_56caed4bbe335_1" /><span class="rpwwt-post-title">SPE3DLAB at the meeting of the French society of forensic medicine, Tours 13th Nov. 2017</span></a><div class="rpwwt-post-date">November 11, 2017</div></li>
+			<li><a href="http://www.speedlab.io/en/2017/08/25/interactive-exploration-data-reduced-dimension/"><img width="75" height="54" src="http://www.speedlab.io/wp-content/uploads/2017/03/new_features-4-150x108.png" class="attachment-75x75 size-75x75 wp-post-image" alt="new_features" /><span class="rpwwt-post-title">Interactive exploration of data in reduced dimension</span></a><div class="rpwwt-post-date">August 25, 2017</div></li>
+			<li><a href="http://www.speedlab.io/en/2017/06/21/spe3dlab-annual-symposium-french-association-forensic-medecine-paris-28th-june-2017/"><img width="75" height="75" src="http://www.speedlab.io/wp-content/uploads/2017/06/666_ckeditor_perso_36611_56caed4bbe335_1-150x150.png" class="attachment-75x75 size-75x75 wp-post-image" alt="666_ckeditor_perso_36611_56caed4bbe335_1" /><span class="rpwwt-post-title">SPE3DLAB at the 50th international francophone symposium of forensic medecine, Paris 30th June to 2017</span></a><div class="rpwwt-post-date">June 21, 2017</div></li>
+			<li><a href="http://www.speedlab.io/en/2017/06/19/robust-consensus-clustering/"><img width="75" height="54" src="http://www.speedlab.io/wp-content/uploads/2017/03/new_features-4-150x108.png" class="attachment-75x75 size-75x75 wp-post-image" alt="new_features" /><span class="rpwwt-post-title">Robust consensus clustering</span></a><div class="rpwwt-post-date">June 19, 2017</div></li>
+			<li><a href="http://www.speedlab.io/en/2017/03/08/creation-semantic-variables-based-document-term-matrix-dtm/"><img width="75" height="54" src="http://www.speedlab.io/wp-content/uploads/2017/03/new_features-4-150x108.png" class="attachment-75x75 size-75x75 wp-post-image" alt="new_features" /><span class="rpwwt-post-title">Creation of semantic variables based on the document-term matrix (DTM)</span></a><div class="rpwwt-post-date">March 8, 2017</div></li>
+			<li class="rpwwt-sticky"><a href="http://www.speedlab.io/en/2017/01/02/speedlab-seminary-psl-paris-sciences-et-lettres-science-data-science-healthcare-paris-jan-17th-2017/"><img width="75" height="20" src="http://www.speedlab.io/wp-content/uploads/2017/01/governance_analytics-e1485247885477-150x40.png" class="attachment-75x75 size-75x75 wp-post-image" alt="governance_analytics" /><span class="rpwwt-post-title">SPE3DLab at seminary PSL (Paris Sciences et Lettres) : Science and data science in healthcare &#8211; Paris, Jan. 17th 2017</span></a><div class="rpwwt-post-date">January 2, 2017</div></li>
+			<li class="rpwwt-sticky"><a href="http://www.speedlab.io/en/2016/12/08/radio-france-culture-la-methode-scientifique-dec-7th-2017/"><img width="75" height="75" src="http://www.speedlab.io/wp-content/uploads/2016/09/France_Culture_-_2008.svg-150x150.png" class="attachment-75x75 size-75x75 wp-post-image" alt="France_Culture_-_2008.svg" srcset="http://www.speedlab.io/wp-content/uploads/2016/09/France_Culture_-_2008.svg-150x150.png 150w, http://www.speedlab.io/wp-content/uploads/2016/09/France_Culture_-_2008.svg.png 180w" sizes="(max-width: 75px) 85vw, 75px" /><span class="rpwwt-post-title">SPE3DLab is on Radio France Culture &#8211; ‘La Méthode scientifique‘ &#8211; Dec. 7th 2016</span></a><div class="rpwwt-post-date">December 8, 2016</div></li>
+			<li><a href="http://www.speedlab.io/en/2016/10/05/speedlab-at-e-health-research-international-congress-paris-oct-11th-12th-2016-en/"><img width="75" height="19" src="http://www.speedlab.io/wp-content/uploads/2016/09/logo.ehr2016-e1485246241266-150x38.png" class="attachment-75x75 size-75x75 wp-post-image" alt="logo.ehr2016" /><span class="rpwwt-post-title">SPE3DLab at the E-Health Research International Congress &#8211; Paris, Oct. 11th-12th 2016</span></a><div class="rpwwt-post-date">October 5, 2016</div></li>
+		</ul>
+	</section></div><section id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="http://www.speedlab.io/en/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</section>	</aside><!-- .sidebar .widget-area -->
+
+		</div><!-- .site-content -->
+
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+		
+		
+                        
+		
+							<nav class="main-navigation" role="navigation" aria-label="Footer Primary Menu">
+					<div class="menu-main-en-container"><ul id="menu-main-en-1" class="primary-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-440"><a href="http://www.speedlab.io/en/category/features-and-roadmap/">Features and roadmap</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-87"><a href="http://www.speedlab.io/en/download/">Download</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57"><a href="http://www.speedlab.io/en/projects-and-use-cases/">Projects and use cases</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-65"><a href="http://www.speedlab.io/en/publications-en/">Publications</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-410"><a href="http://www.speedlab.io/en/category/events/">Events</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="http://www.speedlab.io/en/partners/">Partners</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-388"><a href="http://www.speedlab.io/en/category/in-the-press/">Press</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-92"><a href="http://www.speedlab.io/en/contact-en/">Contact</a></li>
+</ul></div>				</nav><!-- .main-navigation -->
+			
+			
+			<div class="site-info">
+								<span class="site-title"><a href="http://www.speedlab.io/en/speedlab-en/" rel="home">SPE3DLab, Speed-up your data analysis, Big Data</a> </span>
+
+                                <span><a href="/sitemap_index.xml">sitemap</a></span>
+				
+				
+				
+			</div><!-- .site-info -->
+		</footer><!-- .site-footer -->
+	</div><!-- .site-inner -->
+</div><!-- .site -->
+
+
+<!-- WP Audio player plugin v1.9.6 - https://www.tipsandtricks-hq.com/wordpress-audio-music-player-plugin-4556/ -->
+    <script type="text/javascript">
+        soundManager.useFlashBlock = true; // optional - if used, required flashblock.css
+        soundManager.url = 'http://www.speedlab.io/wp-content/plugins/compact-wp-audio-player/swf/soundmanager2.swf';
+        function play_mp3(flg, ids, mp3url, volume, loops)
+        {
+            //Check the file URL parameter value
+            var pieces = mp3url.split("|");
+            if (pieces.length > 1) {//We have got an .ogg file too
+                mp3file = pieces[0];
+                oggfile = pieces[1];
+                //set the file URL to be an array with the mp3 and ogg file
+                mp3url = new Array(mp3file, oggfile);
+            }
+
+            soundManager.createSound({
+                id: 'btnplay_' + ids,
+                volume: volume,
+                url: mp3url
+            });
+
+            if (flg == 'play') {
+                    soundManager.play('btnplay_' + ids, {
+                    onfinish: function() {
+                        if (loops == 'true') {
+                            loopSound('btnplay_' + ids);
+                        }
+                        else {
+                            document.getElementById('btnplay_' + ids).style.display = 'inline';
+                            document.getElementById('btnstop_' + ids).style.display = 'none';
+                        }
+                    }
+                });
+            }
+            else if (flg == 'stop') {
+    //soundManager.stop('btnplay_'+ids);
+                soundManager.pause('btnplay_' + ids);
+            }
+        }
+        function show_hide(flag, ids)
+        {
+            if (flag == 'play') {
+                document.getElementById('btnplay_' + ids).style.display = 'none';
+                document.getElementById('btnstop_' + ids).style.display = 'inline';
+            }
+            else if (flag == 'stop') {
+                document.getElementById('btnplay_' + ids).style.display = 'inline';
+                document.getElementById('btnstop_' + ids).style.display = 'none';
+            }
+        }
+        function loopSound(soundID)
+        {
+            window.setTimeout(function() {
+                soundManager.play(soundID, {onfinish: function() {
+                        loopSound(soundID);
+                    }});
+            }, 1);
+        }
+        function stop_all_tracks()
+        {
+            soundManager.stopAll();
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id.indexOf("btnplay_") == 0) {
+                    inputs[i].style.display = 'inline';//Toggle the play button
+                }
+                if (inputs[i].id.indexOf("btnstop_") == 0) {
+                    inputs[i].style.display = 'none';//Hide the stop button
+                }
+            }
+        }
+    </script>
+    <script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/mouse.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/slider.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/button.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/spinner.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/jquery/ui/effect-shake.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/themes/twentysixteen/js/skip-link-focus-fix.js?ver=20160816'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/themes/twentysixteen/js/functions.js?ver=20160816'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/addons-for-visual-composer/assets/js/lvca-frontend.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-includes/js/wp-embed.min.js?ver=4.6'></script>
+<script type='text/javascript' src='http://www.speedlab.io/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=4.12'></script>
+</body>
+</html>
